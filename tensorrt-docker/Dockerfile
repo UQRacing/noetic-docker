@@ -30,7 +30,7 @@ RUN curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt
 RUN apt-get update && \
     sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' && \
     curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add - && \
-    sudo apt update && \
+    apt update && \
     apt-get install -y --no-install-recommends \
     ros-noetic-desktop-full \
     python3-rosdep \
@@ -68,27 +68,30 @@ RUN python3 -m pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --
     python3 -m pip install onnx && \
     python3 -m pip install nms && \
     python3 -m pip install pycuda && \
-    sudo apt update && \
-    sudo apt install git && \
-    sudo apt install ros-noetic-catkin python3-catkin-tools python3-osrf-pycommon
+    apt update && \
+    apt install git && \
+    apt install ros-noetic-catkin python3-catkin-tools python3-osrf-pycommon && \
+    pip install ipython && \
+    apt-get install -y libxcb-xinerama0
+
 
     
 
 #Vam dependencies
-RUN sudo apt update && \
-    sudo apt install libsdl2-2.0-0 libsdl2-dev libsdl2-mixer-2.0-0 libsdl2-mixer-dev && \
-    sudo apt install ros-noetic-sbg-driver && \
-    sudo apt-get install ros-noetic-rosserial && \
-    sudo apt-get install ros-noetic-rosserial-arduino
+RUN apt update && \
+    apt install libsdl2-2.0-0 libsdl2-dev libsdl2-mixer-2.0-0 libsdl2-mixer-dev && \
+    apt install ros-noetic-sbg-driver && \
+    apt-get install ros-noetic-rosserial && \
+    apt-get install ros-noetic-rosserial-arduino
 
 # FSSIM dependencies
-RUN sudo apt-get install && \
-    sudo apt install python3-catkin-tools && \
-    sudo apt install ibpcl-dev && \
-    sudo apt install python3-pip
+RUN apt-get install && \
+    apt install python3-catkin-tools && \
+    apt install ibpcl-dev && \
+    apt install python3-pip
 
 # Install ROS Packages
-RUN sudo apt-get install \
+RUN apt-get install \
     ros-noetic-gazebo-msgs \
     ros-noetic-gazebo-ros \
     ros-noetic-pcl-ros \
