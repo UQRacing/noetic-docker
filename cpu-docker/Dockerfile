@@ -45,6 +45,7 @@ RUN rosdep init && \
 # Conenet dependencies
 RUN apt-get update
 RUN apt-get upgrade
+RUN pip3 install --upgrade numpy
 RUN python3 -m pip install networkx==2.5
 RUN python3 -m pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --index-url https://download.pytorch.org/whl/cpu && \
     python3 -m pip install cv_bridge opencv-python ultralytics onnx nms && \
@@ -78,7 +79,6 @@ RUN apt-get install -y \
 #Vape2
 RUN apt install -y ros-noetic-rviz-visual-tools ros-noetic-ddynamic-reconfigure
 RUN pip3 install shapely
-RUN pip3 install --upgrade numpy
 RUN pip install ipython
 
 
