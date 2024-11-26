@@ -32,6 +32,7 @@ RUN apt-get update && \
     ros-noetic-desktop-full \
     python3-rosdep \
     && rm -rf /var/lib/apt/lists/* && \
+    apt-get update && \
     apt-get install -y build-essential
 
 
@@ -75,7 +76,7 @@ RUN apt-get install -y \
     ros-noetic-joy
   
 #Vape2
-RUN apt install ros-noetic-rviz-visual-tools ros-noetic-ddynamic-reconfigure
+RUN apt install -y ros-noetic-rviz-visual-tools ros-noetic-ddynamic-reconfigure
 RUN pip3 install shapely
 RUN pip3 install --upgrade numpy
 RUN pip install ipython
