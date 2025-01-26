@@ -1,5 +1,5 @@
 # Use the NVIDIA CUDA 11.8 base image
-FROM nvidia/cuda:11.8.0-devel-ubuntu20.04
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
 
 
 # Set environment variables
@@ -33,14 +33,16 @@ RUN apt-get update && \
         build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Add ROS 2 GPG key and repository
-RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+RUN add-apt repository universe
 
-# Install ROS 2 Galactic and essential tools
+# Add ROS 2 GPG key and repository
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# Install ROS 2 humble and essential tools
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        ros-galactic-desktop \
+        ros-humble-desktop \
         python3-rosdep \
         python3-colcon-common-extensions \
         ros-galactic-cv-bridge \
@@ -140,7 +142,7 @@ RUN python3 -m pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --
 RUN pip3 install shapely
 
 # Source ROS 2 setup script in all shell sessions
-RUN echo "source /opt/ros/galactic/setup.bash" >> /etc/bash.bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
 
 # Set the default command
 CMD ["bash"]
