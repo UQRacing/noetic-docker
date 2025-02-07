@@ -45,7 +45,7 @@ RUN apt-get update && \
         ros-humble-desktop \
         python3-rosdep \
         python3-colcon-common-extensions \
-        ros-galactic-cv-bridge \
+        ros-humble-cv-bridge \
         ros-dev-tools \
         git \
     && rm -rf /var/lib/apt/lists/*
@@ -56,7 +56,7 @@ RUN rosdep init && \
 
 
 # Source ROS 2 setup script in all shell sessions
-RUN echo "source /opt/ros/galactic/setup.bash" >> /etc/bash.bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
 
 # Rviz visual dep
 RUN apt-get update && apt-get install -y --no-install-recommends \
