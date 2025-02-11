@@ -9,8 +9,6 @@ ENV CUDNN_VERSION=8.9.7
 ENV CUDA_VERSION=11.8 
 ENV TENSORRT_DIR=/usr/local/TensorRT-${TENSORRT_VERSION}
 
-
-
 # Set locale
 RUN apt-get update && \
     apt-get install -y locales && \
@@ -33,11 +31,13 @@ RUN apt-get update && \
         build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-RUN add-apt repository universe
+RUN add-apt-repository universe
+RUN apt update && apt install curl gnupg lsb-release
 
 # Add ROS 2 GPG key and repository
-RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+RUN apt update && apt install -y curl  
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | apt-key add -  
+RUN echo "deb http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" > /etc/apt/sources.list.d/ros2.list  
 
 # Install ROS 2 humble and essential tools
 RUN apt-get update && \
@@ -92,7 +92,7 @@ ENV LIBRARY_PATH=${TENSORRT_DIR}/lib:${LIBRARY_PATH}
 
 # Install TensorRT Python bindings
 RUN python3 -m pip install --upgrade pip && \
-    python3 -m pip install ${TENSORRT_DIR}/python/tensorrt-8.5.2.2-cp38-none-linux_x86_64.whl && \
+    python3 -m pip install ${TENSORRT_DIR}/python/tensorrt-8.5.2.2-cp310-none-linux_x86_64.whl && \
     python3 -m pip install ${TENSORRT_DIR}/onnx_graphsurgeon/onnx_graphsurgeon-0.3.12-py2.py3-none-any.whl
 
 RUN export LD_LIBRARY_PATH=TensorRT-8.5.2.2/lib:$LD_LIBRARY_PATH
@@ -108,7 +108,7 @@ RUN python3 -m pip install torch==2.1.1 torchvision==0.16.1 torchaudio==2.1.1 --
     python3 -m pip install pycuda && \
     apt update && \
     apt install git && \
-    apt python3-osrf-pycommon && \
+    python3 -m pip install git+https://github.com/catkin/catkin_tools.git && \
     pip install ipython && \
     apt-get install -y libxcb-xinerama0
 
