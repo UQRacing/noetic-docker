@@ -22,7 +22,11 @@ RUN apt-get update && \
 
 #Mac users will probs need this
 
-RUN apt-get update && apt-get install -y virtualgl mesa-utils
+RUN apt-get update && \
+    apt-get install -y software-properties-common && \
+    add-apt-repository universe && \
+    apt-get update && \
+    apt-get install -y virtualgl mesa-utils
 
 
 RUN locale-gen en_US.UTF-8 && \
