@@ -32,9 +32,8 @@ RUN wget -q -O- https://packagecloud.io/dcommander/virtualgl/gpgkey | \
     gpg --dearmor > /etc/apt/trusted.gpg.d/VirtualGL.gpg
 
 # Add the VirtualGL repository
-RUN wget -q -O /etc/apt/sources.list.d/virtualgl.list \
-    https://packagecloud.io/dcommander/virtualgl/ubuntu/dists/focal/main/binary-amd64/VirtualGL.list
-
+RUN wget -q -O /etc/apt/sources.list.d/VirtualGL.list \
+    https://raw.githubusercontent.com/VirtualGL/repo/main/VirtualGL.list
 # Update package lists and install VirtualGL
 RUN apt-get update && apt-get install -y virtualgl
     
