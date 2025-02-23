@@ -22,11 +22,22 @@ RUN apt-get update && \
 
 #Mac users will probs need this
 
-RUN apt-get update && \
-    apt-get install -y software-properties-common && \
-    add-apt-repository universe && \
-    apt-get update && \
-    apt-get install -y virtualgl mesa-utils
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    software-properties-common
+
+# Add the VirtualGL GPG key
+RUN wget -q -O- https://packagecloud.io/dcommander/virtualgl/gpgkey | \
+    gpg --dearmor > /etc/apt/trusted.gpg.d/VirtualGL.gpg
+
+# Add the VirtualGL repository
+RUN wget -q -O /etc/apt/sources.list.d/virtualgl.list \
+    https://packagecloud.io/dcommander/virtualgl/ubuntu/dists/focal/main/binary-amd64/VirtualGL.list
+
+# Update package lists and install VirtualGL
+RUN apt-get update && apt-get install -y virtualgl
+    
 
 
 RUN locale-gen en_US.UTF-8 && \
