@@ -6,6 +6,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 
+#lets see if this works
+RUN rm -rf /var/lib/apt/lists/*
+
 # Install dependencies
 RUN apt-get update && \
     apt-get install -y \
