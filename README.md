@@ -85,6 +85,41 @@ or feel free to use the run script.
 ./run.sh
 ```
 
+To access the desktop, visit http://localhost:8080/vnc_auto.html
+
+Note that the terminal inside this is NOT connected to your docker terminal, and will NOT have the required dependencies installed.
+
+## How to run multiple terminals at once
+
+We use `tmux` to manage multiple terminal sessions simultaneously. To get started:
+
+1. Start a new tmux session by running:
+
+   ```bash
+   tmux
+   ```
+
+2. Split the terminal into multiple panes:
+
+   - Vertically: `Ctrl + b`, then %
+   - Horizontally: `Ctrl + b`, then "
+
+3. Switch between panes using `Ctrl + b`, then use the arrow keys.
+
+4. To create multiple windows:
+
+   - Press `Ctrl + b`, then C to create a new window.
+
+5. Switch between windows using `Ctrl + b`, then use the number keys (1, 2, 3, etc.).
+
+6. To detach from the session and leave it running in the background:
+   Ctrl + b, then d
+
+7. To reattach to the tmux session:
+   tmux attach-session
+
+For more advanced tmux usage, check out the [official tmux manual](https://man7.org/linux/man-pages/man1/tmux.1.html).
+
 ## Issues
 
 Feel free to report issues, this is currently in beta and is not validated for all systems. Verified on an M1 and M3 Apple Silicon Mac.
