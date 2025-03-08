@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo docker-compose start
+sudo docker-compose up -d
 sudo docker attach ros-dev-vm
