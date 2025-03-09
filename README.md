@@ -130,6 +130,9 @@ HELP I GET A WEIRD ERROR GETTING CREDENTIALS!!!<br/>
 `(ERROR: failed to solve: error getting credentials - err: exit status 1, out: ``)` <br/>
 OSX: edit the file at `~/.docker/config.json` to change credsStore to be either desktop or osxkeychain (whichever it currently is not) <br/>
 
+HELP MY I CANNOT RUN DOCKER-COMPOSE:<br />
+docker does support running compose commands via `docker compose` in some situations instead of `docker-compose` but implementation across various versions is inconsistent. The guide recommends you use `docker-compose` but if only `docker compose` works for you, just use that (they are supposed to be the same thing)
+
 WINDOWS DOCKER DESKTOP ISSUE:<br />
 WSL update failed or smth like that?<br />
 Update WSL manually: go to `https://github.com/microsoft/WSL/releases` and scroll down to the release tagged `latest` <br />
