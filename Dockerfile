@@ -105,6 +105,7 @@ RUN pip3 install --no-cache-dir --upgrade \
 RUN yes | unminimize
 # Source ROS setup script for all users
 RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+RUN echo "export EUFS_MASTER=/ros2_ws/src" >> /etc/bash.bashrc
 
 # Set the default command
 CMD ["bash"]
