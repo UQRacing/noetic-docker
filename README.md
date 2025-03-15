@@ -54,8 +54,9 @@ brew install docker docker-compose
 Clone this repo
 
 ```bash
-git clone https://github.com/uqracing/new-member-docker.git
-cd new-member-docker
+git clone https://github.com/uqracing/noetic-docker.git
+cd noetic-docker
+git checkout compose
 ```
 
 Run the setup script
