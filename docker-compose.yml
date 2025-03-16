@@ -2,10 +2,9 @@ services:
   ros_dev_env:
     platform: "linux/amd64"
     container_name: "ros-dev-vm"
-    image: "ubuntu:22.04"
     volumes:
       - ${ROS_PROJECT_PATH}:/ros2_ws/src/
-    build: ./
+    build: .
     environment:
       - DISPLAY=novnc:0.0
     networks:

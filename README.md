@@ -9,6 +9,8 @@ Docker: [Engine Only](https://docs.docker.com/engine/install/) or [Desktop GUI](
 
 Docker Compose: Comes with Docker Desktop. [Standalone Install](https://docs.docker.com/compose/install/)
 
+MacOS guide for installing these is below
+
 ## Windows install
 
 Make sure the file ".env" exists in this folder (If it doesn't exist then create it)
@@ -44,6 +46,12 @@ Install Homebrew by running the following command in your terminal:
 ```
 
 Install Docker and Docker Compose using Homebrew:
+
+```bash
+brew install --cask docker && brew install docker-compose
+```
+
+or for just the engine
 
 ```bash
 brew install docker docker-compose
@@ -86,13 +94,31 @@ or feel free to use the run script.
 ./run.sh
 ```
 
+Alternatively, you can stop the containers, which keeps them around so you do not need to rebuild the next time you try to run.
+
+```bash
+docker-compose stop
+```
+
+and to restart then run
+
+```bash
+docker-compose start
+```
+
 To access the desktop, visit http://localhost:8080/vnc_auto.html
 
 Note that the terminal inside this is NOT connected to your docker terminal, and will NOT have the required dependencies installed.
 
 ## How to run multiple terminals at once
 
-We use `tmux` to manage multiple terminal sessions simultaneously. To get started:
+N.B. you can run a seperate terminal inside a new terminal emulator by running the command
+
+```bash
+docker exec -it ros-dev-vm /bin/bash
+```
+
+However, we use `tmux` to manage multiple terminal sessions inside of one emulator simultaneously. To get started:
 
 1. Start a new tmux session by running:
 
