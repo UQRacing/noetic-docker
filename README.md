@@ -45,6 +45,9 @@ Install Homebrew by running the following command in your terminal:
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
+> **:warning: Warning:**
+> Running untrusted code directly with bash can be harmful for your computer, and may expose you to viruses or other unecessary risk
+
 Install Docker and Docker Compose using Homebrew:
 
 ```bash
@@ -56,9 +59,8 @@ or for just the engine
 ```bash
 brew install docker docker-compose
 ```
-
-There are sometimes errors when running through QEMU (default) emulation for the containers.
-
+> :information_source:
+> There are sometimes errors when running through QEMU (default) emulation for the containers. <br />
 > To switch from QEMU to Rosetta emulation in Docker, go to **Docker Desktop Settings > General > Virtual Machine Options > Apple Virtualisation Framework > Use Rosetta for x86/amd64 emulation on Apple Silicon**
 
 <sub>(additionally Rosetta is up to 4x faster)</sub>
@@ -112,7 +114,8 @@ and to restart then run
 docker-compose start
 ```
 
-To access the desktop, visit http://localhost:8080/vnc_auto.html
+> **:exclamation: Important:**
+> To access the desktop, visit http://localhost:8080/vnc_auto.html
 
 Note that the terminal inside this is NOT connected to your docker terminal, and will NOT have the required dependencies installed.
 
