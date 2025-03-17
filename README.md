@@ -57,6 +57,12 @@ or for just the engine
 brew install docker docker-compose
 ```
 
+There are sometimes errors when running through QEMU (default) emulation for the containers.
+
+> To switch from QEMU to Rosetta emulation in Docker, go to **Docker Desktop Settings > General > Virtual Machine Options > Apple Virtualisation Framework > Use Rosetta for x86/amd64 emulation on Apple Silicon**
+
+<sub>(additionally Rosetta is up to 4x faster)</sub>
+
 ## Usage
 
 Clone this repo
