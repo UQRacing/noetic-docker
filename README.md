@@ -177,15 +177,13 @@ HELP MY TERMINAL ISNT RENDERING THE PROMPT CORRECTLY:<br />
 Please install and configure a nerdfont to properly use the prompt: instructions are easily available and depend on your terminal, os and preferred font
 
 HELP I'M MISSING A DEPENDENCY:<br />
-Please create a git issue and tag it with the `Missing Dependency` label. Assign either [@nedlane] (https://www.github.com/nedlane), or assign yourself and create a branch with it added, PR and link to issue. Make sure to request review from somebody else before merging so that it doesn't brick everyone's environment!
+Please create a git issue and tag it with the `Missing Dependency` label. Assign either [@nedlane] (https://www.github.com/nedlane), or assign yourself and create a branch with it added, PR and link to issue. Make sure to request review from somebody else before merging so that it doesn't brick everyone's environment! Don't forget to update the list of dependencies with the added one(s).
 
 ## Notes
 
 Please note that the setup script requires an **ABSOLUTE** path to your project folder
 
 ## Dependencies
-
-### General
 
 #### **System Packages:**
 
@@ -217,6 +215,7 @@ Please note that the setup script requires an **ABSOLUTE** path to your project 
 - **ros-humble-ackermann-msgs**: message definitions for Ackermann steering-based vehicles.
 - **ros-humble-joint-state-publisher**: publishes joint states for robot visualization.
 - **ros-humble-rviz-visual-tools**: visualization tools for RViz.
+- **python3-colcon-common-extensions**: A metapackage for colcon, the recommended build tool for ROS 2. 
 
 #### **Python Libraries:**
 
