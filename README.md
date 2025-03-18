@@ -72,7 +72,6 @@ Clone this repo
 ```bash
 git clone https://github.com/uqracing/noetic-docker.git
 cd noetic-docker
-git checkout compose
 ```
 
 Run the setup script
@@ -176,6 +175,9 @@ select the installer (`.........x86.msi` for most people unless you know it's ot
 
 HELP MY TERMINAL ISNT RENDERING THE PROMPT CORRECTLY:<br />
 Please install and configure a nerdfont to properly use the prompt: instructions are easily available and depend on your terminal, os and preferred font
+
+HELP I'M MISSING A DEPENDENCY:<br />
+Please create a git issue and tag it with the `Missing Dependency` label. Assign either [@nedlane] (https://www.github.com/nedlane), or assign yourself and create a branch with it added, PR and link to issue. Make sure to request review from somebody else before merging so that it doesn't brick everyone's environment!
 
 ## Notes
 
