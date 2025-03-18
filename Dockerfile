@@ -1,5 +1,5 @@
 # Use the official Ubuntu 22.04 base image
-FROM ubuntu:22.04
+FROM --platform=linux/amd64 ubuntu:22.04
 
 # Set environment variables
 ENV DEBIAN_FRONTEND=noninteractive
@@ -28,7 +28,8 @@ RUN apt-get update && \
 RUN apt-get update && apt-get install -y \
     wget \
     gnupg \
-    software-properties-common
+    software-properties-common \
+    tmux 
 
 # Add the VirtualGL GPG key
 RUN wget -q -O- https://packagecloud.io/dcommander/virtualgl/gpgkey | \
@@ -67,30 +68,44 @@ RUN apt-get update && \
     ros-humble-camera-info-manager \
     ros-humble-velodyne-simulator \
     ros-humble-joy \
+    ros-humble-ackermann-msgs \
+    ros-humble-joint-state-publisher \
     ros-humble-rviz-visual-tools && \
     rm -rf /var/lib/apt/lists/*
 
 # Initialize rosdep
+RUN rm -f /etc/ros/rosdep/sources.list.d/20-default.list
+
 RUN rosdep init && \
     rosdep update
 
+RUN apt update 
+
+RUN apt install python3-colcon-common-extensions -y
+
 # Install Python packages
 RUN pip3 install --no-cache-dir --upgrade \
-    numpy \
+    numpy==1.24.4 \
     networkx==2.5 \
     torch==2.1.1 \
     torchvision==0.16.1 \
     torchaudio==2.1.1 \
+    ground \
+    sect \
+    scikit-learn \
     cv_bridge \
     opencv-python \
     ultralytics \
     onnx \
     nms \
     shapely \
-    ipython
+    ipython \
+    pandas==1.4.4
 
+RUN yes | unminimize
 # Source ROS setup script for all users
 RUN echo "source /opt/ros/humble/setup.bash" >> /etc/bash.bashrc
+RUN echo "export EUFS_MASTER=/ros2_ws/src" >> /etc/bash.bashrc
 
 # Set the default command
 CMD ["bash"]

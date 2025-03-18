@@ -1,0 +1,26 @@
+services:
+  ros_dev_env:
+    platform: "linux/amd64"
+    container_name: "ros-dev-vm"
+    volumes:
+      - ${ROS_PROJECT_PATH}:/ros2_ws/src/
+    build: .
+    environment:
+      - DISPLAY=novnc:0.0
+    networks:
+      - x11
+    stdin_open: true
+    tty: true
+  novnc:
+    platform: "linux/amd64"
+    image: theasp/novnc:latest
+    environment:
+      - DISPLAY_WIDTH=1920
+      - DISPLAY_HEIGHT=1080
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - x11
+    restart: on-failure
+networks:
+  x11:
